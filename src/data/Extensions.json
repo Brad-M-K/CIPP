@@ -201,6 +201,100 @@
     ]
   },
   {
+    "name": "Infinigate",
+    "id": "Infinigate",
+    "type": "Infinigate",
+    "cat": "CSP",
+    "logo": "/assets/integrations/infinigate.png",
+    "logoDark": "/assets/integrations/infinigate_dark.png",
+    "description": "Enable the Infinigate CORE Marketplace integration to manage your CSP licensing from CIPP.",
+    "helpText": "This integration allows you to manage your CSP licensing via the Infinigate CORE Marketplace API. Purchase new licenses, manage subscriptions, and track orders directly from CIPP.",
+    "mappingRequired": true,
+    "links": [
+      {
+        "name": "Infinigate CORE Portal",
+        "url": "https://partner.infinigate.cloud"
+      }
+    ],
+    "SettingOptions": [
+      {
+        "type": "switch",
+        "name": "Infinigate.Enabled",
+        "label": "Enable Integration"
+      },
+      {
+        "type": "textField",
+        "name": "Infinigate.BaseURL",
+        "label": "API Base URL",
+        "placeholder": "https://api.infinigate.cloud/marketplace",
+        "required": true,
+        "condition": {
+          "field": "Infinigate.Enabled",
+          "compareType": "is",
+          "compareValue": true,
+          "action": "disable"
+        }
+      },
+      {
+        "type": "textField",
+        "name": "Infinigate.Username",
+        "label": "API Username",
+        "placeholder": "Enter your Infinigate API Username",
+        "required": true,
+        "condition": {
+          "field": "Infinigate.Enabled",
+          "compareType": "is",
+          "compareValue": true,
+          "action": "disable"
+        }
+      },
+      {
+        "type": "textField",
+        "name": "Infinigate.SubscriptionKey",
+        "label": "Subscription Key",
+        "placeholder": "Enter your Infinigate Subscription Key",
+        "required": true,
+        "condition": {
+          "field": "Infinigate.Enabled",
+          "compareType": "is",
+          "compareValue": true,
+          "action": "disable"
+        }
+      },
+      {
+        "type": "password",
+        "name": "Infinigate.APIKey",
+        "label": "API Password",
+        "placeholder": "Enter your Infinigate API Password",
+        "required": true,
+        "condition": {
+          "field": "Infinigate.Enabled",
+          "compareType": "is",
+          "compareValue": true,
+          "action": "disable"
+        }
+      },
+      {
+        "type": "autoComplete",
+        "name": "Infinigate.AllowedCustomRoles",
+        "label": "Select CIPP roles that are allowed to purchase licenses",
+        "api": {
+          "url": "/api/ListCustomRole",
+          "queryKey": "CustomRoles",
+          "labelField": "RoleName",
+          "valueField": "RoleName"
+        },
+        "multiple": true,
+        "condition": {
+          "field": "Infinigate.Enabled",
+          "compareType": "is",
+          "compareValue": true,
+          "action": "disable"
+        }
+      }
+    ]
+  },
+  {
     "name": "Gradient",
     "id": "Gradient",
     "type": "Gradient",

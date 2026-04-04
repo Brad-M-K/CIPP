@@ -556,6 +556,56 @@ const CippAddEditUser = (props) => {
           </CippFormCondition>
         </>
       )}
+      {integrationSettings?.data?.Infinigate?.Enabled === true && (
+        <>
+          <CippFormCondition
+            formControl={formControl}
+            field="licenses"
+            compareType="labelContains"
+            compareValue="(0 available)"
+            labelCompare={true}
+          >
+            <Grid size={{ xs: 6 }}>
+              <CippFormComponent
+                type="switch"
+                label="0 Licences available. Purchase new Infinigate licence?"
+                name="infinigate"
+                formControl={formControl}
+              />
+            </Grid>
+            <CippFormCondition
+              formControl={formControl}
+              field="infinigate"
+              compareType="is"
+              compareValue={true}
+            >
+              <Grid size={{ xs: 12 }}>
+                <Alert severity="info">
+                  This will purchase a new Infinigate license for the user, according to the terms
+                  and conditions with Infinigate. When the license becomes available, CIPP will
+                  assign the license to this user.
+                </Alert>
+              </Grid>
+              <Grid size={{ xs: 12 }}>
+                <CippFormComponent
+                  type="autoComplete"
+                  api={{
+                    queryKey: `InfinigateSKU-${tenantDomain}`,
+                    url: "/api/ListInfinigateSku",
+                    data: { currentSkuOnly: true },
+                    labelField: (option) =>
+                      `${option?.productName ?? option?.name} (${option?.id})`,
+                    valueField: "id",
+                  }}
+                  label="Infinigate License"
+                  name="infinigateLicense"
+                  formControl={formControl}
+                />
+              </Grid>
+            </CippFormCondition>
+          </CippFormCondition>
+        </>
+      )}
       <Grid size={{ xs: 6 }}>
         <CippFormComponent
           type="switch"

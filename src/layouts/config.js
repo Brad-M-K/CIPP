@@ -270,6 +270,11 @@ export const nativeMenuItems = [
             permissions: ['Tenant.Directory.*'],
           },
           {
+            title: 'Infinigate Licence Report',
+            path: '/tenant/reports/list-infinigate-licenses',
+            permissions: ['Tenant.Directory.*'],
+          },
+          {
             title: 'Consented Applications',
             path: '/tenant/reports/application-consent',
             permissions: ['Tenant.Application.*'],
